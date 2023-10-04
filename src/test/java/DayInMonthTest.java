@@ -5,27 +5,30 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DayInMonthTest {
     @Test
     public void testWithMonthHas31Days() {
-        assertEquals(DateTimeChecker.dayInMonth(2000, 1), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 3), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 5), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 7), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 8), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 10), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 12), 31);
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 1));
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 3));
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 5));
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 7));
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 8));
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 10));
+        assertEquals(31,DateTimeChecker.dayInMonth(2000, 12));
     }
-    
+
+    @Test
     public void testWithMonthHas30Days() {
-        assertEquals(DateTimeChecker.dayInMonth(2000, 4), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 6), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 9), 31);
-        assertEquals(DateTimeChecker.dayInMonth(2000, 11), 31);
+        assertEquals(30,DateTimeChecker.dayInMonth(2000, 4));
+        assertEquals(30,DateTimeChecker.dayInMonth(2000, 6));
+        assertEquals(30,DateTimeChecker.dayInMonth(2000, 9));
+        assertEquals(30,DateTimeChecker.dayInMonth(2000, 11));
     }
-    
+
+    @Test
     public void testWithMonthHas28Days() {
-        assertEquals(DateTimeChecker.dayInMonth(2001, 2), 28);
+        assertEquals(28,DateTimeChecker.dayInMonth(2001, 2));
     }
-    
+
+    @Test
     public void testWithMonthHas29Days() {
-        assertEquals(DateTimeChecker.dayInMonth(2000, 2), 29);
+        assertEquals(29,DateTimeChecker.dayInMonth(2000, 2));
     }
 }

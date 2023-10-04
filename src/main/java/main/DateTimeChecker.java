@@ -24,10 +24,7 @@ public class DateTimeChecker {
     }
 
     public static boolean isValidRange(int day, int month, int year) {
-        if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 3000) {
-            return false;
-        }
-        return true;
+        return day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1000 && year <= 3000;
     }
 
     public static int dayInMonth(int year, int month) {
@@ -48,10 +45,7 @@ public class DateTimeChecker {
     }
 
     public static boolean isValidDate(int day, int month, int year) {
-        if (1 <= month && month <= 12 && 1 <= day && day <= dayInMonth(year, month)) {
-            return true;
-        }
-        return false;
+        return 1 <= month && month <= 12 && 1 <= day && day <= dayInMonth(year, month);
     }
 
     public static boolean checkDate(String day, String month, String year) {
@@ -64,11 +58,7 @@ public class DateTimeChecker {
         int intYear = Integer.parseInt(year);
 
 
-        if (isValidRange(intDay, intMonth, intYear) && isValidDate(intDay, intMonth, intYear)) {
-            return true;
-        } else {
-            return false;
-        }
+        return isValidRange(intDay, intMonth, intYear) && isValidDate(intDay, intMonth, intYear);
     }
 }
 
