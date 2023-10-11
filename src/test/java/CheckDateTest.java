@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckDateTest {
-    // Luan (1-3)
+    // TODO: Luan (1-3)
     @Test
     public void testAValidDate() {
         assertTrue(DateTimeChecker.checkDate("11", "05", "2003"));
@@ -31,20 +31,74 @@ public class CheckDateTest {
     }
 
     @Test
-    public void testAnOutOfRangeYear() {
-        assertFalse(DateTimeChecker.checkDate("11", "8", "3001"));
-        assertFalse(DateTimeChecker.checkDate("11", "8", "5000"));
-        assertFalse(DateTimeChecker.checkDate("11", "8", "0"));
-        assertFalse(DateTimeChecker.checkDate("11", "8", "10"));
+    public void testAnOutOfRangeMonth() {
+        assertFalse(DateTimeChecker.checkDate("11", "32", "2000"));
+        assertFalse(DateTimeChecker.checkDate("11", "13", "2000"));
+        assertFalse(DateTimeChecker.checkDate("11", "15", "2000"));
+        assertFalse(DateTimeChecker.checkDate("11", "1000", "2000"));
     }
 
-    // Nam (4-6)
+    // TODO: Nam (4-6)
+    @Test
+    public void testAnOutRangeOfYear() {
+        assertFalse(DateTimeChecker.checkDate("12", "7", "10000"));
+        assertFalse(DateTimeChecker.checkDate("22", "2", "9999"));
+        assertFalse(DateTimeChecker.checkDate("23", "5", "0333"));
+        assertFalse(DateTimeChecker.checkDate("30", "6", "0099"));
+    }
 
-    // Phuc (7-9)
+    @Test
+    public void testAValidDayOfLeafYear() {
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2001"));
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2002"));
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2003"));
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2005"));
+    }
 
-    // Anh (10-12)
+    @Test
+    public void testAnInvalidDayOfLeafYear() {
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2018"));
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2003"));
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2009"));
+        assertFalse(DateTimeChecker.checkDate("29", "2", "2013"));
+    }
 
-    // Quang (13-15)
+    // TODO: Phuc (7-9)
+    @Test
+    public void testAnInvalidDayFormat() {
+        assertFalse(DateTimeChecker.checkDate("one", "2", "2005"));
+        assertFalse(DateTimeChecker.checkDate("0.123", "2", "2005"));
+    }
+
+    @Test
+    public void testAnInvalidMonthFormat() {
+        assertFalse(DateTimeChecker.checkDate("1", "two", "2003"));
+        assertFalse(DateTimeChecker.checkDate("1", "2.2", "2003"));
+    }
+
+    @Test
+    public void testAnInvalidYearFormat() {
+        assertFalse(DateTimeChecker.checkDate("1", "2", "two thousand and five"));
+        assertFalse(DateTimeChecker.checkDate("1", "2", "2.2"));
+    }
+
+    // TODO: Anh (10-12)
+    @Test
+    public void testNegativeDay() {
+        assertFalse(DateTimeChecker.checkDate("-10", "1", "2000"));
+    }
+
+    @Test
+    public void testNegativeMonth() {
+        assertFalse(DateTimeChecker.checkDate("1", "-10", "2000"));
+    }
+
+    @Test
+    public void testNegativeYear() {
+        assertFalse(DateTimeChecker.checkDate("1", "1", "-2000"));
+    }
+
+    // TODO: Quang (13-15)
     @Test
     public void testANullDay() {
         assertFalse(DateTimeChecker.checkDate(null, "1", "2000"));
@@ -59,5 +113,4 @@ public class CheckDateTest {
     public void testANullYear() {
         assertFalse(DateTimeChecker.checkDate("1", "1", null));
     }
-
 }
